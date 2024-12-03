@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="./Asset/favicon1.png">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(
+                135deg, 
+                #4A90E2 0%, 
+                #50C878 100%
+            );
+            --secondary-gradient: linear-gradient(
+                45deg, 
+                #FFA07A 0%, 
+                #FF6347 100%
+            );
+            --background-gradient: linear-gradient(
+                120deg, 
+                #f6d365 0%, 
+                #fda085 50%, 
+                #f5D4A2 100%
+            );
+            --card-background: linear-gradient(
+                225deg, 
+                rgba(255,255,255,0.2) 0%, 
+                rgba(255,255,255,0.1) 100%
+            );
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: var(--background-gradient);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        header {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-pic {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+        }
+
+        .profile-pic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                45deg, 
+                rgba(255,160,122,0.3) 0%, 
+                rgba(253,84,75,0.3) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .profile-pic:hover::before {
+            opacity: 1;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .profile-pic:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #333;
+            font-size: 2.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-gradient);
+            border-radius: 2px;
+        }
+
+        .skills, .projects, .contact {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.2);
+            color: #333;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: var(--secondary-gradient);
+            color: white;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-details {
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .para {
+            font-family: cursive;
+            /* font-style: italic; */
+        }
+
+        .para1 {
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            /* font-weight: bold; */
+            font-style: italic;
+        }
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(232, 99, 51, 0.2);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 10px;
+            color: #333;
+        }
+
+        .submit-btn {
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="profile-pic">
+                <img src="./Asset/image.png" alt="Profile Picture">
+            </div>
+            <div>
+                <h1>Pragati Chauhan</h1>
+                <p>SDET @Infosys LTD.<br>
+                 Software Designer | Problem Solver</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="skills">
+            <h2 class="section-title">About me</h2>
+            <!-- <p class="para1"> A versatile software development and QA professional with 3 years of experience, proficient 
+                in JAVA, XML, CSS3, JSON, databases, and SQL. Skilled in automated testing tools like Selenium, Playwright
+                 with expertise in OOPS concepts, SOLID Principles, BDD Cucumber, RESTAPI Testing and Agile methodologies. Demonstrates 
+                strong capabilities in automation & manual testing, error documentation, troubleshooting, and live site 
+                deployment.
+            </p> -->
+            <p class="para1">
+                Dynamic & Detail-Oriented Software Developer & QA Automation Tester with diverse experience of <b>3 years</b> in designing, developing and testing
+                robust applications. Proficient in SDLC, including Agile and Waterfall. Skilled in backend development
+                 using Java and Springboot, with expertise in creating scalable and efficient web applications. Demonstrates 
+                 a solid understanding of software testing principles, including unit testing, integration testing and automated
+                 testing frameworks.<br><br>
+                 Known for strong problem-solving abilities, collaboration skills and a commitment to delivering high-quality solutions.
+                  Adept at troubleshooting, debugging and optimizing code to enhance performance. Passionate about leveraging
+                  technical expertise to drive innovation and meet business objectives in diverse industries.
+            </p>
+        </section>
+
+        <section class="skills">
+            <h2 class="section-title">Skills</h2>
+           
+            <div class="skill-grid">
+                <div class="skill-card">Core Java</div>
+                <div class="skill-card">Hibernate</div>
+                <div class="skill-card">Springboot</div>
+                <div class="skill-card">Microservices</div>
+                <div class="skill-card">Python</div>
+                <div class="skill-card">SQL</div>
+                <div class="skill-card">Selenium</div>
+                <div class="skill-card">JUnit</div>
+                <div class="skill-card">TestNG</div>
+                <div class="skill-card">PyTest</div>
+                <div class="skill-card">Cucumber</div>
+                <div class="skill-card">RestAssured</div>
+                <div class="skill-card">AWS</div>
+                <div class="skill-card">MongoDB</div>
+                <div class="skill-card">MySQL</div>
+                <div class="skill-card">Kafka</div>
+                <div class="skill-card">Maven</div>
+               <!-- <div class="skill-card">Cloud & Databases</div>
+                <div class="skill-card">Developer Tools</div>
+                <div class="skill-card">Softwares used</div>
+                <div class="skill-card">Other Technologies</div> -->
+            </div>
+        
+        </section>
+
+        <section class="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="./Asset/bg4.jpg" alt="Project 1">
+                    <div class="project-details">
+                        <h3>Banking project</h3>
+                        <!-- <p class="para">- Automating a banking application using <b>Selenium</b> tool and frameworks like <b>TestNG & Junit.</b><br>
+                            - Performed Behaviour-Driven Testing using <b>Cucumber</b>. <br>
+                            - Tested the back-end and front-end APIs using <b>RestAssured</b> Java library & Postman.<br>
+                            - CI/CD Pipeline using <b>Jenkins</b>.<br>
+                            - Tech used: <b>Selenium, Cucumber, RestAssured, PostMan, Jenkins.</b>
+                    </p> -->
+                    <p class="para">- Automated a banking application by creating a scalable script using Selenium & Java.<br>
+                        - Checked various functionalities using unit testing frameworks. <br>
+                        - Implemented robust error handling and logging mechanisms. <br>
+                        - Tested the application for Behaviour-Driven components.<br>
+                        - Tech used: <b>Selenium, Cucumber, RestAssured, PostMan, Jenkins</b>
+                    </p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="./Asset/bg2.jpg" alt="Project 2">
+                    <div class="project-details">
+                        <h3>Global Transit Project</h3>
+                        <!-- <p class="para">Implemented RESTful APIs with <b>Spring Boot</b> to enable seamless communication between
+                            the front-end and back-end systems, ensuring smooth integration and scalability. Completed accountability of
+                            requirement analysis, development, and documentation.</p> -->
+                            <p class="para"> - Designed an efficient algorithm for adaptive signal control based on real-time data.<br>
+                                - Ensured high availability and fault tolerance using Microservices architecture.<br>
+                                - Database design and ORM with Hibernate and real-time data handling & API development.<br>
+                                - Tech used: <b>Java, Springboot, Hibernate, Microservices, Maven</b>
+                            </p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="./Asset/bg3.png" alt="Project 3">
+                    <div class="project-details">
+                        <h3>Naukri Platform Automation</h3>
+                        <!-- <p class="para">- Need: Repeatedly filling out same details.<br>
+                            - Automated the details to be filled as requested.<br>
+                            - Used <b>Selenium</b> and its various functionalities as found fit.<br>
+                            - Reduced time-taken from 30 mins to 8 mins to complete the mentioned functionality with success.
+                        </p> -->
+                        <p class="para">
+                            - Created a robust script using Selenium that automatically fills the requested details.<br>
+                            - Implemented intelligent error handling to manage website structures and potential issues.<br>
+                            - Reduced time-taken from 30 mins to 8 mins to complete the mentioned functionality with success.<br>
+                            - Tech used: <b>Selenium, TestNG. Junit, Maven</b>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2 class="section-title">Contact Me</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nameInput = this.querySelector('input[type="text"]');
+            const emailInput = this.querySelector('input[type="email"]');
+            const messageInput = this.querySelector('textarea');
+            
+            if (!nameInput.value.trim()) {
+                alert('Please enter your name');
+                nameInput.focus();
+                return;
+            }
+            
+            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+                alert('Please enter a valid email address');
+                emailInput.focus();
+                return;
+            }
+            
+            if (!messageInput.value.trim()) {
+                alert('Please enter a message');
+                messageInput.focus();
+                return;
+            }
+            
+            try {
+                console.log('Form Data:', {
+                    name: nameInput.value,
+                    email: emailInput.value,
+                    message: messageInput.value
+                });
+                
+                const successMessage = document.createElement('div');
+                successMessage.textContent = 'Message sent successfully! I will get back to you soon.';
+                successMessage.style.color = '#FF6347';
+                successMessage.style.marginTop = '10px';
+                this.appendChild(successMessage);
+                
+                setTimeout(() => {
+                    this.reset();
+                    this.removeChild(successMessage);
+                }, 3000);
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('Failed to send message. Please try again.');
+            }
+        });
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</body>
+</html>
